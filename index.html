@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Green Network - Protect Earth</title>
+    <title>Code for Green - Tech Blog</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
     <style>
         * {
             margin: 0;
@@ -21,6 +22,8 @@
             --dark: #1b5e20;
             --text: #333333;
             --white: #ffffff;
+            --code-bg: #2d2d2d;
+            --code-text: #f8f8f2;
         }
 
         body {
@@ -100,29 +103,30 @@
             width: 100%;
         }
 
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80');
+        .blog-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
-            height: 80vh;
+            height: 60vh;
             display: flex;
             align-items: center;
             text-align: center;
             color: var(--white);
+            margin-bottom: 3rem;
         }
 
-        .hero-content {
+        .blog-hero-content {
             max-width: 800px;
             margin: 0 auto;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
+        .blog-hero h1 {
+            font-size: 3rem;
             margin-bottom: 1rem;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
-        .hero p {
+        .blog-hero p {
             font-size: 1.3rem;
             margin-bottom: 2rem;
         }
@@ -147,190 +151,215 @@
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
         }
 
-        section {
-            padding: 5rem 0;
-        }
-
-        .section-title {
-            text-align: center;
+        .blog-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
             margin-bottom: 3rem;
         }
 
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background-color: var(--accent);
-            border-radius: 2px;
-        }
-
-        .section-title p {
-            color: var(--text);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--dark);
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .stat-item {
-            text-align: center;
-            padding: 2rem 1rem;
+        .blog-post {
             background-color: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .stat-item i {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-item p {
-            color: var(--text);
-        }
-
-        .initiatives {
-            background-color: var(--white);
-        }
-
-        .initiatives-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .initiative-card {
-            background-color: var(--light);
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+            margin-bottom: 2rem;
         }
 
-        .initiative-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .initiative-img {
-            height: 200px;
+        .blog-post-img {
+            height: 300px;
             overflow: hidden;
         }
 
-        .initiative-img img {
+        .blog-post-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
 
-        .initiative-card:hover .initiative-img img {
-            transform: scale(1.1);
+        .blog-post:hover .blog-post-img img {
+            transform: scale(1.05);
         }
 
-        .initiative-content {
-            padding: 1.5rem;
+        .blog-post-content {
+            padding: 2rem;
         }
 
-        .initiative-content h3 {
-            font-size: 1.5rem;
+        .blog-post-meta {
+            display: flex;
+            margin-bottom: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .blog-post-meta span {
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .blog-post-meta i {
+            margin-right: 0.5rem;
+        }
+
+        .blog-post-content h2 {
+            font-size: 1.8rem;
             margin-bottom: 1rem;
             color: var(--dark);
         }
 
-        .initiative-content p {
+        .blog-post-content p {
             margin-bottom: 1.5rem;
         }
 
-        .cta {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: var(--white);
-            text-align: center;
-            padding: 5rem 0;
+        .code-block {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
         }
 
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+        .code-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #555;
         }
 
-        .cta p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+        .code-language {
+            font-weight: bold;
+            color: var(--accent);
         }
 
-        .cta .btn {
+        .copy-btn {
+            background: #555;
+            color: white;
+            border: none;
+            padding: 0.3rem 0.7rem;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--accent);
+        }
+
+        .sidebar {
             background-color: var(--white);
-            color: var(--primary);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
         }
 
-        .cta .btn:hover {
+        .sidebar-widget {
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-widget h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .categories-list, .tags-list {
+            list-style: none;
+        }
+
+        .categories-list li, .tags-list li {
+            margin-bottom: 0.7rem;
+        }
+
+        .categories-list a, .tags-list a {
+            color: var(--text);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .categories-list a:hover, .tags-list a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .tags-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tags-list a {
+            background-color: var(--light);
+            padding: 0.3rem 0.7rem;
+            border-radius: 3px;
+            font-size: 0.8rem;
+        }
+
+        .tags-list a:hover {
             background-color: var(--accent);
+            color: var(--white);
+        }
+
+        .recent-posts-list {
+            list-style: none;
+        }
+
+        .recent-posts-list li {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .recent-posts-list li:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .recent-post-title {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .recent-post-date {
+            font-size: 0.8rem;
+            color: #666;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .pagination a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin: 0 0.3rem;
+            background-color: var(--white);
+            color: var(--text);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .pagination a:hover, .pagination a.active {
+            background-color: var(--primary);
             color: var(--white);
         }
 
@@ -338,6 +367,7 @@
             background-color: var(--dark);
             color: var(--white);
             padding: 3rem 0 1rem;
+            margin-top: 3rem;
         }
 
         .footer-content {
@@ -423,29 +453,25 @@
         }
 
         @media (max-width: 992px) {
-            .about-content {
+            .blog-container {
                 grid-template-columns: 1fr;
             }
             
-            .initiatives-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .sidebar {
+                position: static;
             }
             
             .footer-content {
                 grid-template-columns: repeat(2, 1fr);
             }
-            
-            .stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+            .blog-hero h1 {
+                font-size: 2.2rem;
             }
             
-            .hero p {
+            .blog-hero p {
                 font-size: 1.1rem;
             }
             
@@ -475,22 +501,19 @@
                 display: block;
             }
             
-            .initiatives-grid {
-                grid-template-columns: 1fr;
-            }
-            
             .footer-content {
-                grid-template-columns: 1fr;
-            }
-            
-            .stats {
                 grid-template-columns: 1fr;
             }
         }
 
-        /* Animation for stats counter */
-        .counter {
-            transition: all 0.5s ease;
+        .html-tag {
+            color: #e06c75;
+        }
+        .html-attr {
+            color: #d19a66;
+        }
+        .html-attr-value {
+            color: #98c379;
         }
     </style>
 </head>
@@ -499,203 +522,301 @@
     <header>
         <div class="container nav-container">
             <div class="logo">
-                <i class="fas fa-seedling"></i>
-                <span>Green Network</span>
+                <i class="fas fa-code"></i>
+                <span>Code for Green</span>
             </div>
             <nav>
                 <div class="mobile-menu">
                     <i class="fas fa-bars"></i>
                 </div>
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#initiatives">Initiatives</a></li>
-                    <li><a href="#get-involved">Get Involved</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="tutorials.html">Tutorials</a></li>
+                    <li><a href="about.html">About</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container hero-content">
-            <h1>Protect Our Planet, Preserve Our Future</h1>
-            <p>Join the global movement to create a sustainable world through conservation, education, and community action.</p>
-            <a href="#get-involved" class="btn">Join Our Network</a>
+    <!-- Blog Hero Section -->
+    <section class="blog-hero">
+        <div class="container blog-hero-content">
+            <h1>Code for a Sustainable Future</h1>
+            <p>Exploring the intersection of technology, coding, and environmental conservation</p>
+            <a href="#featured" class="btn">Read Latest Articles</a>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Green Network</h2>
-                <p>We are a global community dedicated to environmental protection and sustainable development.</p>
-            </div>
-            <div class="about-content">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Team planting trees">
+    <!-- Blog Content -->
+    <div class="container blog-container">
+        <!-- Main Blog Content -->
+        <main>
+            <!-- Featured Blog Post -->
+            <article class="blog-post" id="featured">
+                <div class="blog-post-img">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Coding for Sustainability">
                 </div>
-                <div class="about-text">
-                    <h3>Our Mission</h3>
-                    <p>Green Network is committed to creating a sustainable future by protecting natural ecosystems, promoting renewable energy, and empowering communities to take environmental action.</p>
-                    <p>Founded in 2010, we've grown from a small grassroots organization to an international network with over 50,000 members across 120 countries.</p>
-                    <p>Our approach combines scientific research, community engagement, and policy advocacy to address the most pressing environmental challenges of our time.</p>
-                    <a href="#" class="btn">Learn More</a>
-                </div>
-            </div>
-            <div class="stats">
-                <div class="stat-item">
-                    <i class="fas fa-tree"></i>
-                    <h3 class="counter" data-target="2500000">0</h3>
-                    <p>Trees Planted</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-users"></i>
-                    <h3 class="counter" data-target="50000">0</h3>
-                    <p>Active Members</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-globe-americas"></i>
-                    <h3 class="counter" data-target="120">0</h3>
-                    <p>Countries Reached</p>
-                </div>
-                <div class="stat-item">
-                    <i class="fas fa-recycle"></i>
-                    <h3 class="counter" data-target="1500">0</h3>
-                    <p>Cleanup Projects</p>
-                </div>
-            </div>
-        </div>
-    </section>
+                <div class="blog-post-content">
+                    <div class="blog-post-meta">
+                        <span><i class="far fa-calendar"></i> June 15, 2025</span>
+                        <span><i class="far fa-user"></i> Alex Developer</span>
+                        <span><i class="far fa-folder"></i> Web Development</span>
+                    </div>
+                    <h2>Building Eco-Friendly Websites: A Developer's Guide</h2>
+                    <p>As web developers, we have a responsibility to create digital experiences that are not only user-friendly but also environmentally conscious. The internet consumes a significant amount of energy, and our coding choices can impact this footprint.</p>
+                    
+                    <p>In this article, we'll explore techniques for building sustainable websites that load faster, use less energy, and provide better user experiences.</p>
+                    
+                    <h3>Optimizing Images for Performance</h3>
+                    <p>Images often account for the largest portion of a webpage's size. Here's how to optimize them effectively:</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-language">HTML</span>
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                        <pre><code>&lt;!-- Responsive image with modern formats --&gt;
+&lt;picture&gt;
+  &lt;source srcset="image.webp" type="image/webp"&gt;
+  &lt;source srcset="image.avif" type="image/avif"&gt;
+  &lt;img src="image.jpg" alt="Eco-friendly design" 
+       loading="lazy" width="800" height="450"&gt;
+&lt;/picture&gt;</code></pre>
+                    </div>
+                    
+                    <h3>Efficient CSS with Green Principles</h3>
+                    <p>Clean, efficient CSS not only improves performance but also reduces energy consumption:</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-language">CSS</span>
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                        <pre><code>/* Use CSS variables for consistent theming */
+:root {
+  --primary-green: #2e7d32;
+  --secondary-green: #4caf50;
+  --light-bg: #e8f5e9;
+}
 
-    <!-- Initiatives Section -->
-    <section class="initiatives" id="initiatives">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Initiatives</h2>
-                <p>Discover the key programs and projects we're implementing to protect our planet.</p>
-            </div>
-            <div class="initiatives-grid">
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://dialogue.earth/content/uploads/2021/04/lessons-from-the-rush-to-reforest-china-dialogue-2400x1599.jpg" alt="Reforestation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Global Reforestation</h3>
-                        <p>Planting millions of trees worldwide to restore ecosystems, combat climate change, and protect biodiversity.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1621451537084-482c73073a0f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80" alt="Ocean Conservation">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Ocean Conservation</h3>
-                        <p>Protecting marine ecosystems, reducing plastic pollution, and promoting sustainable fishing practices.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-                <div class="initiative-card">
-                    <div class="initiative-img">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80" alt="Renewable Energy">
-                    </div>
-                    <div class="initiative-content">
-                        <h3>Renewable Energy</h3>
-                        <p>Promoting solar, wind, and other clean energy sources to reduce dependence on fossil fuels.</p>
-                        <a href="#" class="btn">Learn More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+/* Optimize with efficient selectors */
+.card {
+  background: var(--light-bg);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease;
+}
 
-    <!-- CTA Section -->
-    <section class="cta" id="get-involved">
-        <div class="container">
-            <h2>Join Our Global Movement</h2>
-            <p>Together, we can create a sustainable future for generations to come. Every action counts, no matter how small.</p>
-            <a href="#" class="btn">Become a Member</a>
+/* Reduce animations for energy savings */
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+}</code></pre>
+                    </div>
+                    
+                    <p>By implementing these techniques, we can create websites that are not only visually appealing but also environmentally responsible.</p>
+                    
+                    <a href="#" class="btn">Read Full Article</a>
+                </div>
+            </article>
+
+            <!-- Second Blog Post -->
+            <article class="blog-post">
+                <div class="blog-post-img">
+                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Data Visualization for Climate">
+                </div>
+                <div class="blog-post-content">
+                    <div class="blog-post-meta">
+                        <span><i class="far fa-calendar"></i> June 8, 2025</span>
+                        <span><i class="far fa-user"></i> Sam Data</span>
+                        <span><i class="far fa-folder"></i> Data Science</span>
+                    </div>
+                    <h2>Visualizing Climate Data with Python and D3.js</h2>
+                    <p>Data visualization plays a crucial role in understanding and communicating climate change. In this tutorial, we'll explore how to create compelling visualizations of environmental data.</p>
+                    
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-language">JavaScript</span>
+                            <button class="copy-btn">Copy</button>
+                        </div>
+                        <pre><code>// Simple climate data chart using Chart.js
+const ctx = document.getElementById('climateChart').getContext('2d');
+const climateChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['2010', '2015', '2020', '2025'],
+        datasets: [{
+            label: 'Global Temperature Anomaly (°C)',
+            data: [0.72, 0.93, 1.02, 1.15],
+            borderColor: '#e74c3c',
+            backgroundColor: 'rgba(231, 76, 60, 0.1)',
+            tension: 0.3
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            title: {
+                display: true,
+                text: 'Global Temperature Trends'
+            }
+        }
+    }
+});</code></pre>
+                    </div>
+                    
+                    <p>Effective data visualization helps make complex climate data accessible to broader audiences, fostering understanding and action.</p>
+                    
+                    <a href="#" class="btn">Read Full Article</a>
+                </div>
+            </article>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-widget">
+                <h3>About This Blog</h3>
+                <p>Code for Green explores how technology and programming can contribute to environmental sustainability. We cover web development, data science, and tech solutions for a better planet.</p>
+            </div>
+            
+            <div class="sidebar-widget">
+                <h3>Categories</h3>
+                <ul class="categories-list">
+                    <li><a href="#">Web Development <span>(12)</span></a></li>
+                    <li><a href="#">Data Science <span>(8)</span></a></li>
+                    <li><a href="#">Sustainability <span>(15)</span></a></li>
+                    <li><a href="#">Green Tech <span>(6)</span></a></li>
+                    <li><a href="#">Tutorials <span>(10)</span></a></li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-widget">
+                <h3>Recent Posts</h3>
+                <ul class="recent-posts-list">
+                    <li>
+                        <div class="recent-post-title">Optimizing Website Energy Consumption</div>
+                        <div class="recent-post-date">June 1, 2025</div>
+                    </li>
+                    <li>
+                        <div class="recent-post-title">Python for Environmental Data Analysis</div>
+                        <div class="recent-post-date">May 24, 2025</div>
+                    </li>
+                    <li>
+                        <div class="recent-post-title">Eco-Friendly Hosting Solutions</div>
+                        <div class="recent-post-date">May 15, 2025</div>
+                    </li>
+                    <li>
+                        <div class="recent-post-title">Green UX Design Principles</div>
+                        <div class="recent-post-date">May 5, 2025</div>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="sidebar-widget">
+                <h3>Tags</h3>
+                <div class="tags-list">
+                    <a href="#">JavaScript</a>
+                    <a href="#">Python</a>
+                    <a href="#">Sustainability</a>
+                    <a href="#">CSS</a>
+                    <a href="#">Data Visualization</a>
+                    <a href="#">Web Performance</a>
+                    <a href="#">Green Tech</a>
+                    <a href="#">Climate Data</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Pagination -->
+    <div class="container">
+        <div class="pagination">
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">Next →</a>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
-    <footer id="contact">
+    <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>Green Network</h3>
-                    <p>We are dedicated to protecting our planet through collaborative action, education, and sustainable solutions.</p>
+                    <h3>Code for Green</h3>
+                    <p>Exploring the intersection of technology and environmental sustainability through code.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-dev"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#initiatives">Initiatives</a></li>
-                        <li><a href="#get-involved">Get Involved</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="projects.html">Projects</a></li>
+                        <li><a href="tutorials.html">Tutorials</a></li>
+                        <li><a href="about.html">About</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Our Programs</h3>
+                    <h3>Categories</h3>
                     <ul class="footer-links">
-                        <li><a href="#">Reforestation</a></li>
-                        <li><a href="#">Ocean Cleanup</a></li>
-                        <li><a href="#">Wildlife Protection</a></li>
-                        <li><a href="#">Climate Education</a></li>
-                        <li><a href="#">Sustainable Agriculture</a></li>
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Data Science</a></li>
+                        <li><a href="#">Sustainability</a></li>
+                        <li><a href="#">Green Tech</a></li>
+                        <li><a href="#">Tutorials</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Copper Creek Drive, New York</p>
-                    <p><i class="fas fa-phone"></i> +1 (312) 171-0771</p>
-                    <p><i class="fas fa-envelope"></i> support@greennetwork.org</p>
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> hello@codeforgreen.dev</p>
+                    <p><i class="fab fa-github"></i> github.com/codeforgreen</p>
+                    <p><i class="fas fa-rss"></i> Subscribe to our newsletter</p>
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Green Network. All rights reserved.</p>
+                <p>&copy; 2025 Code for Green. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script>
         // Mobile Menu Toggle
         document.querySelector('.mobile-menu').addEventListener('click', function() {
             document.querySelector('nav ul').classList.toggle('active');
         });
 
-        // Counter Animation
-        function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; // The lower the slower
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const count = +counter.innerText;
-                
-                const inc = target / speed;
-                
-                if(count < target) {
-                    counter.innerText = Math.ceil(count + inc);
-                    setTimeout(animateCounters, 1);
-                } else {
-                    counter.innerText = target;
-                }
+        // Syntax Highlighting
+        document.addEventListener('DOMContentLoaded', (event) => {
+            document.querySelectorAll('pre code').forEach((block) => {
+                hljs.highlightElement(block);
             });
-        }
+        });
 
-        // Initialize counters when page loads
-        window.addEventListener('load', animateCounters);
+        // Copy Code Functionality
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const codeBlock = this.parentElement.nextElementSibling;
+                const codeText = codeBlock.textContent;
+                
+                navigator.clipboard.writeText(codeText).then(() => {
+                    const originalText = this.textContent;
+                    this.textContent = 'Copied!';
+                    setTimeout(() => {
+                        this.textContent = originalText;
+                    }, 2000);
+                });
+            });
+        });
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -718,5 +839,4 @@
         });
     </script>
 </body>
-
 </html>
